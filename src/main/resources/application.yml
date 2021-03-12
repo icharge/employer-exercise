@@ -1,7 +1,8 @@
+server:
+  servlet:
+    context-path: /employer
 spring:
   port: 8080
-  servlet:
-    contextPath: /employer
   liquibase:
     enabled: false
 
