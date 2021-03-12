@@ -19,6 +19,8 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <io.springfox.version>3.0.0</io.springfox.version>
         <apache.commons.version>3.10</apache.commons.version>
+        <!--<spring.oauth2.version>2.4.3</spring.oauth2.version>-->
+        <spring.oauth2.version>2.5.0.RELEASE</spring.oauth2.version>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +31,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+            <version>${spring.oauth2.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>${spring.oauth2.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -37,7 +50,6 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
