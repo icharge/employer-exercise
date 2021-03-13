@@ -1,5 +1,6 @@
 package me.norrapat.employer.config.security;
 
+import lombok.extern.log4j.Log4j2;
 import me.norrapat.employer.entity.User;
 import me.norrapat.employer.repository.UserRepo;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+@Log4j2
 @Service
 public class UserService implements UserDetailsService {
 
@@ -22,6 +24,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (log.isDebugEnabled()) {
+            log.debug("Load user name {}", username);
+        }
+
         User user = repository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found: " + username));
 

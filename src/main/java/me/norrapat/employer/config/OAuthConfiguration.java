@@ -22,7 +22,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     private final UserDetailsService userService;
 
-    @Value("${jwt.clientId:glee-o-meter}")
+    @Value("${jwt.clientId:myEmployer}")
     private String clientId;
 
     @Value("${jwt.client-secret:secret}")
