@@ -14,11 +14,11 @@ import java.util.Collections;
 
 @Log4j2
 @Service
-public class UserService implements UserDetailsService {
+public class UserSecurityService implements UserDetailsService {
 
     private final UserRepo repository;
 
-    public UserService(UserRepo repository) {
+    public UserSecurityService(UserRepo repository) {
         this.repository = repository;
     }
 
