@@ -10,10 +10,7 @@ import me.norrapat.employer.mapper.UserEmployeeMapper;
 import me.norrapat.employer.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,8 +28,8 @@ public class EmployeeController {
             value = "Retrieve all employee",
             authorizations = @Authorization(value = "OAuth")
     )
-    public ResponseEntity<?> findAll() {
-        List<User> allUser = employeeService.findAllUser();
+    public ResponseEntity<EmployeeResponseDto> findAll() {
+        List<User> allUser = employeeService.findAllEmployee();
 
         List<EmployeeDto> employeeDtoList = UserEmployeeMapper.MAPPER.toEmployee(allUser);
 

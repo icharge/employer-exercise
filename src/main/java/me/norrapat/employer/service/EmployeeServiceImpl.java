@@ -17,12 +17,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     private UserRepo userRepo;
 
     @Override
-    public List<User> findAllUser() {
+    public List<User> findAllEmployee() {
         return userRepo.findAll();
     }
 
     @Override
-    public User findUserById(int id) {
+    public User findEmployeeById(int id) {
         return userRepo.findById(id).orElseThrow(() -> new NotFoundEmployeeException(id));
     }
 

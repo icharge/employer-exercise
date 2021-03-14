@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface EmployeeService {
-    List<User> findAllUser();
+    List<User> findAllEmployee();
 
-    User findUserById(int id);
+    User findEmployeeById(int id);
 }
