@@ -38,10 +38,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 //.antMatchers("/api/users**").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/**").authenticated()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
                 .accessDeniedHandler(new CustomAccessDeniedHandler());
     }
+
 }
