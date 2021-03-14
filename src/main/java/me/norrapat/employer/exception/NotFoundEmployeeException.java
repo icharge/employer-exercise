@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundEmployeeException extends RuntimeException {
 
-    private Integer id;
+    private Long id;
 
     @Override
     public String getMessage() {

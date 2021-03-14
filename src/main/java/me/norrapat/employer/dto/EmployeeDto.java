@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class EmployeeDto {
 
-    private Integer id;
+    private Long id;
     private String username;
     private String name;
     private String role;

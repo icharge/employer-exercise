@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public User findEmployeeById(int id) {
+    public User findEmployeeById(Long id) {
         return userRepo.findById(id).orElseThrow(() -> new NotFoundEmployeeException(id));
     }
 
