@@ -95,5 +95,15 @@ public class EmployeeController {
         );
     }
 
+    @DeleteMapping("/{id}")
+    @ApiOperation(
+            value = "Delete one employee by ID",
+            authorizations = @Authorization(value = "OAuth")
+    )
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        employeeService.deleteEmployee(id);
+
+        return ResponseEntity.noContent().build();
+    }
 
 }

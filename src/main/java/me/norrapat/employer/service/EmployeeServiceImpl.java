@@ -61,5 +61,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return userRepo.save(user);
     }
 
+    @Override
+    @Transactional
+    public void deleteEmployee(Long id) {
+        User employee = findEmployeeById(id);
+
+        userRepo.delete(employee);
+    }
 
 }
