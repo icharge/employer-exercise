@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/v1.0.0/001_create_user_table.yaml
   - include:
       file: db/changelog/v1.0.0/002_user_seed.yaml
+  - include:
+      file: db/changelog/v1.0.0/003_update_users_hash_password.yaml
