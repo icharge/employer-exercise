@@ -10,4 +10,9 @@ public interface EmployeeService {
     List<User> findAllEmployee();
 
     User findEmployeeById(Long id);
+
+    User createEmployee(User user);
+
+    User saveEmployee(User user);
+
 }
