@@ -1,6 +1,9 @@
 server:
   servlet:
     context-path: /employer
+  error:
+    include-message: always
+    include-binding-errors: always
 spring:
   port: 8080
   liquibase:
