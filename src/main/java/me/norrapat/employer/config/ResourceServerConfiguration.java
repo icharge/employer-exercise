@@ -26,6 +26,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .headers()
+                .frameOptions().sameOrigin() // allow for H2 console debugging and other purpose.
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
@@ -33,6 +36,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 //.antMatchers("/api/signin/**").permitAll()
                 //.antMatchers("/api/glee**").hasAnyAuthority("ADMIN", "USER")
                 //.antMatchers("/api/users**").hasAuthority("ADMIN")
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
