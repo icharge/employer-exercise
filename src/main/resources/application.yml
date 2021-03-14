@@ -5,4 +5,7 @@ spring:
   port: 8080
   liquibase:
     enabled: false
-
+logging:
+  level:
+    #root: DEBUG
+    me.norrapat: DEBUG
