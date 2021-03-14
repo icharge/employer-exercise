@@ -29,14 +29,28 @@ public class EmployeeController {
             authorizations = @Authorization(value = "OAuth")
     )
     public ResponseEntity<EmployeeResponseDto> findAll() {
-        List<User> allUser = employeeService.findAllEmployee();
+        List<User> allEmployee = employeeService.findAllEmployee();
 
-        List<EmployeeDto> employeeDtoList = UserEmployeeMapper.MAPPER.toEmployee(allUser);
+        List<EmployeeDto> employeeDtoList = UserEmployeeMapper.MAPPER.toEmployee(allEmployee);
 
         return ResponseEntity.ok(
                 EmployeeResponseDto.builder()
                         .employeeList(employeeDtoList)
                         .build()
         );
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    @ApiOperation(
+            value = "Retrieve one employee by ID",
+            authorizations = @Authorization(value = "OAuth")
+    )
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        User employee = employeeService.findEmployeeById(id);
+
+        EmployeeDto employeeDto = UserEmployeeMapper.MAPPER.toEmployee(employee);
+
+        return ResponseEntity.ok(employeeDto);
     }
 }
