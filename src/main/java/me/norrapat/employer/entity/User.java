@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -19,14 +20,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty
     private String username;
-
     @JsonIgnore
     @ToString.Exclude
     private String password;
-
     @NotEmpty
     private String name;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {USER, ADMIN, USER_MANAGER}
 }
