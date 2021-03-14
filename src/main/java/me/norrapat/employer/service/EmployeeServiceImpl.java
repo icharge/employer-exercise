@@ -34,6 +34,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
+    public User createEmployee(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        return userRepo.save(user);
+    }
+
+    @Override
+    @Transactional
     public User saveEmployee(User user) {
 
         User employee = findEmployeeById(user.getId());
