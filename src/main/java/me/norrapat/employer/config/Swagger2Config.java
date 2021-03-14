@@ -13,7 +13,6 @@ import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.WildcardType;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
@@ -22,6 +21,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -63,6 +63,7 @@ public class Swagger2Config {
                 .build()
                 .apiInfo(appInfo())
                 .pathMapping("/")
+                .forCodeGeneration(true)
                 .directModelSubstitute(LocalDate.class, String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
                 .alternateTypeRules(
@@ -70,7 +71,7 @@ public class Swagger2Config {
                                 typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
                                 typeResolver.resolve(WildcardType.class)))
                 .useDefaultResponseMessages(false)
-                .securitySchemes(singletonList(apiKey()))
+                .securitySchemes(singletonList(oAuth2Scheme()))
                 .securityContexts(singletonList(securityContext()))
                 //.enableUrlTemplating(true)
                 ;
@@ -93,6 +94,14 @@ public class Swagger2Config {
         return new ApiKey("JWT Token", "Authorization", "header");
     }
 
+    private OAuth oAuth2Scheme() {
+        return new OAuth(
+                "OAuth",
+                Arrays.asList(readAndWriteScopes()),
+                singletonList(new ResourceOwnerPasswordCredentialsGrant("../oauth/token"))
+        );
+    }
+
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
@@ -101,10 +110,15 @@ public class Swagger2Config {
     }
 
     List<SecurityReference> defaultAuth() {
+        AuthorizationScope[] authorizationScopes = readAndWriteScopes();
+        return singletonList(new SecurityReference("OAuth", authorizationScopes));
+    }
+
+    private AuthorizationScope[] readAndWriteScopes() {
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[2];
         authorizationScopes[0] = new AuthorizationScope("read", "access read");
         authorizationScopes[1] = new AuthorizationScope("write", "access write");
-        return singletonList(new SecurityReference("JWT Token", authorizationScopes));
+        return authorizationScopes;
     }
 
     @Bean
