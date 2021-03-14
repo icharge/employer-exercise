@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202103142017
+      author: NorrapatNi
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+                  value: '$2y$12$RS5k9s5tk.mpjpahfHJgHOngoomcSkFAB8VT1G8d.1E3HlM/tvJ5e'
+              - column:
+                  name: name
+                  value: Administrator
+              - column:
+                  name: role
+                  value: ADMIN
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: norrapatni
+              - column:
+                  name: password
+                  value: '$2y$12$RS5k9s5tk.mpjpahfHJgHOngoomcSkFAB8VT1G8d.1E3HlM/tvJ5e'
+              - column:
+                  name: name
+                  value: Norrapat Nimmanee
+              - column:
+                  name: role
+                  value: USER
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: krittapasba
+              - column:
+                  name: password
+                  value: '$2y$12$RS5k9s5tk.mpjpahfHJgHOngoomcSkFAB8VT1G8d.1E3HlM/tvJ5e'
+              - column:
+                  name: name
+                  value: Krittapas Bavontaweepanya
+              - column:
+                  name: role
+                  value: USER
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: chatmongkolwo
+              - column:
+                  name: password
+                  value: '$2y$12$RS5k9s5tk.mpjpahfHJgHOngoomcSkFAB8VT1G8d.1E3HlM/tvJ5e'
+              - column:
+                  name: name
+                  value: Chatmongkol Wong-ake
+              - column:
+                  name: role
+                  value: USER

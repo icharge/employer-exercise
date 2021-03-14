@@ -4,7 +4,7 @@ server:
 spring:
   port: 8080
   liquibase:
-    enabled: false
+    enabled: true
   h2:
     console:
       enabled: true # This must disabled on PRODUCTION env.
