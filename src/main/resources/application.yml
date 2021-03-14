@@ -25,3 +25,10 @@ logging:
     org.hibernate.type.descriptor.sql: TRACE
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     me.norrapat: DEBUG
+swagger:
+  title: Employer App
+  description: A Testing code exercise
+  version: 1.0.0
+  team: Norrapat Nimmanee
+  email: charge_n@hotmail.com
+  url: 'https://github.com/icharge/employer-exercise'
