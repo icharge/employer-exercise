@@ -20,13 +20,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotEmpty
     private String username;
+
     @JsonIgnore
     @ToString.Exclude
     private String password;
+
     @NotEmpty
     private String name;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
