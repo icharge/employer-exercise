@@ -2,6 +2,7 @@ package me.norrapat.employer.service;
 
 import me.norrapat.employer.entity.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface EmployeeService {
 
     User saveEmployee(User user);
 
+    @Transactional
+    void deleteEmployee(Long id);
 }
