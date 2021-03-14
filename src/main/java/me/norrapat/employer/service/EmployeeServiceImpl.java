@@ -4,8 +4,11 @@ import lombok.extern.log4j.Log4j2;
 import me.norrapat.employer.entity.User;
 import me.norrapat.employer.exception.NotFoundEmployeeException;
 import me.norrapat.employer.repository.UserRepo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +19,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<User> findAllEmployee() {
         return userRepo.findAll();
@@ -24,6 +30,27 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public User findEmployeeById(Long id) {
         return userRepo.findById(id).orElseThrow(() -> new NotFoundEmployeeException(id));
+    }
+
+    @Override
+    @Transactional
+    public User saveEmployee(User user) {
+
+        User employee = findEmployeeById(user.getId());
+
+        // Update password if not empty.
+        if (StringUtils.isNotEmpty(user.getPassword())) {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
+        } else {
+            // Remain existing password.
+            user.setPassword(employee.getPassword());
+        }
+
+        // TODO: Admin must allow to change role.
+        user.setRole(employee.getRole());
+
+        return userRepo.save(user);
     }
 
 

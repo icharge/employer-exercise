@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import me.norrapat.employer.dto.EmployeeDto;
 import me.norrapat.employer.dto.EmployeeResponseDto;
+import me.norrapat.employer.dto.GenericResponse;
 import me.norrapat.employer.entity.User;
 import me.norrapat.employer.mapper.UserEmployeeMapper;
 import me.norrapat.employer.service.EmployeeService;
@@ -52,5 +53,35 @@ public class EmployeeController {
         EmployeeDto employeeDto = UserEmployeeMapper.MAPPER.toEmployee(employee);
 
         return ResponseEntity.ok(employeeDto);
+    }
+
+    @PostMapping("/{id}")
+    @ResponseBody
+    @ApiOperation(
+            value = "Saving one employee",
+            authorizations = @Authorization(value = "OAuth")
+    )
+    public ResponseEntity<GenericResponse> saveById(@PathVariable Long id, @RequestBody EmployeeDto employeeDto) {
+
+        validate(id, employeeDto);
+
+        employeeService.saveEmployee(UserEmployeeMapper.MAPPER.toUser(employeeDto));
+
+        return ResponseEntity.ok(GenericResponse.builder()
+                .status("OK")
+                .message("Saved")
+                .build()
+        );
+    }
+
+    private void validate(Long id, EmployeeDto employeeDto) {
+        // Set ID.
+        employeeDto.setId(id);
+
+        try {
+            User.Role.valueOf(employeeDto.getRole());
+        } catch (IllegalArgumentException e) {
+            employeeDto.setRole("USER");
+        }
     }
 }

@@ -22,6 +22,7 @@ public class User {
     private Long id;
 
     @NotEmpty
+    @Column(updatable = false)
     private String username;
 
     @JsonIgnore
