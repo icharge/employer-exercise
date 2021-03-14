@@ -5,6 +5,17 @@ spring:
   port: 8080
   liquibase:
     enabled: false
+  h2:
+    console:
+      enabled: true # This must disabled on PRODUCTION env.
+  datasource:
+    url: jdbc:h2:mem:employerdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: none
 logging:
   level:
     #root: DEBUG
