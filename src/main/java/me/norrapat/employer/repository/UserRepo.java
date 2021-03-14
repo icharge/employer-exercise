@@ -1,13 +1,13 @@
 package me.norrapat.employer.repository;
 
 import me.norrapat.employer.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends CrudRepository<User, Integer> {
+public interface UserRepo extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String username);
 
