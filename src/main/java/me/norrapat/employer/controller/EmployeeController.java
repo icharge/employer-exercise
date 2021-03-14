@@ -70,13 +70,13 @@ public class EmployeeController {
 
         return ResponseEntity.ok(GenericResponse.builder()
                 .status("OK")
-                .message("Saved")
+                .message("Created")
                 .build()
         );
     }
 
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     @ResponseBody
     @ApiOperation(
             value = "Saving one employee",
@@ -88,11 +88,7 @@ public class EmployeeController {
 
         employeeService.saveEmployee(UserEmployeeMapper.MAPPER.toUser(employeeDto));
 
-        return ResponseEntity.ok(GenericResponse.builder()
-                .status("OK")
-                .message("Saved")
-                .build()
-        );
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
