@@ -18,5 +18,10 @@ spring:
     hibernate.ddl-auto: none
 logging:
   level:
-    #root: DEBUG
+    ROOT: INFO
+    org.springframework.web: DEBUG
+    com.siampharm: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     me.norrapat: DEBUG
