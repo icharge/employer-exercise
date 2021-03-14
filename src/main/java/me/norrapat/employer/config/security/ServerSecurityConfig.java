@@ -25,8 +25,10 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    public ServerSecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint, @Qualifier("userService")
-            UserDetailsService userDetailsService) {
+    public ServerSecurityConfig(
+            CustomAuthenticationEntryPoint customAuthenticationEntryPoint,
+            @Qualifier("userService") UserDetailsService userDetailsService
+    ) {
         this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
         this.userDetailsService = userDetailsService;
     }
@@ -58,10 +60,13 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //.antMatchers("/api/signin/**").permitAll()
                 //.antMatchers("/api/glee/**").hasAnyAuthority("ADMIN", "USER")
-                .antMatchers("/api/users/**").hasAuthority("ADMIN")
+                //.antMatchers("/api/users/**").hasAuthority("ADMIN")
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().authenticated()
-                .and().exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(new CustomAccessDeniedHandler());
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                .accessDeniedHandler(new CustomAccessDeniedHandler());
     }
 
 }

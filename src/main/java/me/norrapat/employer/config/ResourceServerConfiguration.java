@@ -28,15 +28,16 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .antMatcher("/api/**")
                 .authorizeRequests()
-                .antMatchers("/api/signin**").permitAll()
-                .antMatchers("/api/signin/**").permitAll()
-                .antMatchers("/api/glee**").hasAnyAuthority("ADMIN", "USER")
-                .antMatchers("/api/users**").hasAuthority("ADMIN")
+                //.antMatchers("/api/signin**").permitAll()
+                //.antMatchers("/api/signin/**").permitAll()
+                //.antMatchers("/api/glee**").hasAnyAuthority("ADMIN", "USER")
+                //.antMatchers("/api/users**").hasAuthority("ADMIN")
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(new CustomAccessDeniedHandler());
+                .exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                .accessDeniedHandler(new CustomAccessDeniedHandler());
     }
 }
