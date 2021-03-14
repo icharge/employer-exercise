@@ -27,7 +27,7 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public ServerSecurityConfig(
             CustomAuthenticationEntryPoint customAuthenticationEntryPoint,
-            @Qualifier("userService") UserDetailsService userDetailsService
+            @Qualifier("userSecurityService") UserDetailsService userDetailsService
     ) {
         this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
         this.userDetailsService = userDetailsService;
