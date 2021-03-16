@@ -1,0 +1,6 @@
+.git
+.cache
+.mvn
+.idea
+docker
+src
