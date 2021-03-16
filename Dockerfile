@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ADD target/employer-1.0.0.war /app.jar
+ADD target/employer-1.0.1.war /app.jar
 
 EXPOSE 8080
 
