@@ -33,7 +33,7 @@ public class EmployeeValidation {
 
         try {
             User.Role.valueOf(employeeDto.getRole());
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             employeeDto.setRole("USER");
         }
     }
@@ -44,7 +44,7 @@ public class EmployeeValidation {
 
         try {
             User.Role.valueOf(employeeDto.getRole());
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             employeeDto.setRole("USER");
         }
     }
