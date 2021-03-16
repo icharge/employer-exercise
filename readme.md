@@ -32,7 +32,7 @@ To pull image from Docker Hub. Run `docker pull norrapat/employer-exercise:1.0.1
 To start as container.
 
 ```
-docker run -p 8080:8080 --name employer-app norrapat/employer-exercise:1.0.0
+docker run -p 8080:8080 --name employer-app norrapat/employer-exercise:1.0.1
 ```
 
 ## REST API endpoint
